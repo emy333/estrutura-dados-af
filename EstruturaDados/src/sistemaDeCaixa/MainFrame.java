@@ -22,6 +22,32 @@ public class MainFrame extends JFrame {
     public void initialize() {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
+        // Painel para os botões "Adicionar" e "Buscar"
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
+        JButton adicionarButton = new JButton("Adicionar");
+        JButton buscarButton = new JButton("Buscar");
+
+        adicionarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar a lógica para adicionar cliente aqui
+                JOptionPane.showMessageDialog(MainFrame.this, "Implementar adicionar cliente", "Adicionar Cliente", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implementar a lógica para buscar cliente aqui
+                JOptionPane.showMessageDialog(MainFrame.this, "Implementar buscar cliente", "Buscar Cliente", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        buttonsPanel.add(adicionarButton);
+        buttonsPanel.add(buscarButton);
+
+        mainPanel.add(buttonsPanel, BorderLayout.NORTH);
+
         JPanel searchPanel = new JPanel();
         JLabel cpfLabel = new JLabel("CPF:");
         JTextField cpfField = new JTextField(15);
@@ -56,7 +82,7 @@ public class MainFrame extends JFrame {
         searchPanel.add(cpfField);
         searchPanel.add(searchButton);
 
-        mainPanel.add(searchPanel, BorderLayout.NORTH);
+        mainPanel.add(searchPanel, BorderLayout.CENTER);
 
         setTitle("Busca por CPF");
         setSize(300, 200);
@@ -71,3 +97,4 @@ public class MainFrame extends JFrame {
         new MainFrame();
     }
 }
+
