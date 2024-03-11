@@ -30,9 +30,43 @@ public class MainFrame extends JFrame {
         adicionarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(MainFrame.this, "Implementar adicionar cliente", "Adicionar Cliente", JOptionPane.INFORMATION_MESSAGE);
+                // Cria um painel para obter informações do novo cliente
+                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JTextField cpfField = new JTextField(15);
+                JTextField nomeField = new JTextField(15);
+                JTextField telefoneField = new JTextField(15);
+                JTextField enderecoField = new JTextField(15);
+        
+                panel.add(new JLabel("CPF:"));
+                panel.add(cpfField);
+                panel.add(new JLabel("Nome:"));
+                panel.add(nomeField);
+                panel.add(new JLabel("Telefone:"));
+                panel.add(telefoneField);
+                panel.add(new JLabel("Endereço:"));
+                panel.add(enderecoField);
+        
+                int result = JOptionPane.showConfirmDialog(MainFrame.this, panel, "Adicionar Cliente",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                
+                if (result == JOptionPane.OK_OPTION) {
+                    String cpf = cpfField.getText();
+                    String nome = nomeField.getText();
+                    String telefone = telefoneField.getText();
+                    String endereco = enderecoField.getText();
+                    
+                    // Verifica se o CPF já existe no mapa
+                    if (!pessoas.containsKey(cpf)) {
+                        // Adiciona o novo cliente ao mapa
+                        pessoas.put(cpf, new String[]{nome, telefone, endereco});
+                        JOptionPane.showMessageDialog(MainFrame.this, "Cliente adicionado com sucesso.", "Adicionar Cliente", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(MainFrame.this, "CPF já existe no sistema.", "Adicionar Cliente", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
+        
 
      
 
